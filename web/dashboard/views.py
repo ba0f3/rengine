@@ -416,9 +416,9 @@ def onboarding(request):
 
     context['openai_key'] = OpenAiAPIKey.objects.first()
     context['netlas_key'] = NetlasAPIKey.objects.first()
-    context['chaos_key'] = ChaosAPIKey.objects.first()
-    context['hackerone_key'] = HackerOneAPIKey.objects.first().key
-    context['hackerone_username'] = HackerOneAPIKey.objects.first().username
+    context['chaos_key'] = ChaosAPIKey.objects.first()    
+    context['hackerone_key'] = '' if HackerOneAPIKey.objects.first() is None else HackerOneAPIKey.objects.first().key
+    context['hackerone_username'] = '' if HackerOneAPIKey.objects.first() is None else HackerOneAPIKey.objects.first().username
 
     context['user_preferences'], _ = UserPreferences.objects.get_or_create(
         user=request.user
